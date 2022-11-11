@@ -1,0 +1,5 @@
+---
+vyos_hostname: vyos-ss-main
+vyos_id: 2
+octet3: 1
+vrrp_priority: 201

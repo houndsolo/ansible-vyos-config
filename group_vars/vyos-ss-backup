@@ -1,0 +1,5 @@
+---
+vyos_hostname: vyos-ss-backup
+vyos_id: 3
+octet3: 1
+vrrp_priority: 200

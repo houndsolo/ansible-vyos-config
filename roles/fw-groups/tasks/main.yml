@@ -1,0 +1,99 @@
+---
+- name: set up firewall zones
+  vyos_firewall_global:
+    config:
+      group:
+        address_group:
+        - name: proxmox
+          afi: ipv4
+          description: proxmox-servers
+          members:
+            - address: 10.2.0.10
+            - address: 10.2.0.12
+            - address: 10.2.0.20
+            - address: 10.2.0.22
+        - name: pi-dns
+          afi: ipv4
+          description: pihole addresses
+          members:
+            - address: 10.2.0.4
+        - name: prox-bs
+          afi: ipv4
+          description: proxmox backup server
+          members:
+            - address: 10.2.0.11
+        - name: arch-vms
+          afi: ipv4
+          description: arch vms
+          members:
+            - address: 10.9.9.69-10.9.9.100
+            - address: 10.9.9.137-10.9.9.141
+            - address: 10.9.10.69-10.9.10.100
+        - name: arch-bm
+          afi: ipv4
+          description: arch bm
+          members:
+            - address: 10.9.0.69-10.9.0.100
+            - address: 10.9.0.137-10.9.0.141
+        - name: jellyfin
+          afi: ipv4
+          description: jellyfin
+          members:
+            - address: 10.8.8.8
+        - name: qbittorrent
+          afi: ipv4
+          description: qbittorrent
+          members:
+            - address: 10.8.8.7
+        - name: media
+          afi: ipv4
+          description: media
+          members:
+            - address: 10.8.8.7-10.8.8.8
+        - name: pixel5a
+          afi: ipv4
+          description: pixel 5a
+          members:
+            - address: 10.4.0.141
+        - name: laptop
+          afi: ipv4
+          description: laptop wifi
+          members:
+            - address: 10.4.0.137
+        - name: hnds-vlan4
+          afi: ipv4
+          description: my vlan4 range
+          members:
+            - address: 10.4.0.137-10.4.0.141
+
+        network_group:
+        - name: vlan2
+          afi: ipv4
+          description: vlan2
+          members:
+            - address: 10.2.0.0/20
+        - name: vlan4
+          afi: ipv4
+          description: vlan4-wlan
+          members:
+            - address: 10.4.0.0/16
+        - name: vlan7
+          afi: ipv4
+          description: vlan7-cluster network
+          members:
+            - address: 10.7.0.0/16
+        - name: vlan8
+          afi: ipv4
+          description: vlan8-media
+          members:
+            - address: 10.8.0.0/16
+        - name: vlan9
+          afi: ipv4
+          description: vlan9-arch vms
+          members:
+            - address: 10.9.0.0/16
+        - name: vlan11
+          afi: ipv4
+          description: vlan1-win vms
+          members:
+            - address: 10.11.0.0/16

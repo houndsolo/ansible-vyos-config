@@ -1,0 +1,28 @@
+---
+- hosts: vyos-{{ node }}-bash
+  connection: network_cli
+  vars_files: vault.yml
+  gather_facts: 'no'
+
+  roles:
+    - bashrc
+
+- hosts: vyos-{{ node }}-1
+  connection: network_cli
+  vars_files: vault.yml
+  gather_facts: 'no'
+  roles:
+    - conf-system
+    - fw-groups
+    - fw-rules
+    - interfaces
+    - fw-wan
+    - vrrp
+    - fw-zones
+    - nat
+- hosts: vyos-{{ node }}-2
+  connection: network_cli
+  vars_files: vault.yml
+  gather_facts: 'no'
+  roles:
+    - del-ci-if

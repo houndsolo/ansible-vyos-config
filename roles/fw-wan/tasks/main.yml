@@ -1,0 +1,6 @@
+---
+- name: set wan firewall
+  vyos_config:
+    lines:
+    - set firewall interface eth0 in name wan-outside-in
+    - set firewall interface eth0 local name wan-outside-local

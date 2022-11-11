@@ -1,0 +1,348 @@
+---
+- name: set up firewalls for zone based fw
+  vyos_firewall_rules:
+    config:
+    - afi: ipv4
+      rule_sets:
+        - name: wan-outside-in
+          description: wan-outside-in firewall
+          default_action: drop
+          rules:
+            - number: 10
+              action: accept
+              state:
+                established: true
+                related: true
+
+        - name: wan-outside-local
+          description: wan-outside-local firewall
+          default_action: drop
+          rules:
+            - number: 10
+              action: accept
+              state:
+                established: true
+                related: true
+            - number: 20
+              action: accept
+              icmp:
+                type_name: echo-request
+              protocol: icmp
+              state:
+                new: true
+
+
+
+        - name: vlan11-vlan8
+          description: vlan11-vlan8
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: media
+            destination:
+              group:
+                address_group: media
+            source:
+              group:
+                network_group: vlan11
+        - name: vlan8-vlan11
+          description: vlan8-vlan11
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: media
+            destination:
+              group:
+                network_group: vlan11
+            source:
+              group:
+                address_group: media
+
+        - name: vlan9-vlan8
+          description: vlan9-vlan8
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: media
+            destination:
+              group:
+                address_group: media
+            source:
+              group:
+                network_group: vlan9
+
+        - name: vlan8-vlan9
+          description: vlan8-vlan9 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: media to vlan9
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                address_group: media
+            state:
+              established: true
+              related: true
+
+        - name: vlan9-vlan2
+          description: vlan9-vlan2 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan9-vlan2
+            destination:
+              group:
+                network_group: vlan2
+            source:
+              group:
+                network_group: vlan9
+
+        - name: vlan2-vlan9
+          description: vlan2-vlan9 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan2-vlan9
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                network_group: vlan2
+
+        - name: vlan9-vlan4
+          description: vlan9-vlan4 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan9-vlan4
+            destination:
+              group:
+                network_group: vlan4
+            source:
+              group:
+                network_group: vlan9
+
+        - name: vlan4-vlan9
+          description: vlan4-vlan9 rule set
+          default_action: drop
+          rules:
+          - number: 20
+            action: accept
+            description: vlan4-vlan9
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                network_group: vlan4
+            state:
+              established: true
+              related: true
+          - number: 10
+            action: accept
+            description: allow personal devices
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                address_group: hnds-vlan4
+
+
+        - name: vlan9-vlan2
+          description: vlan9-vlan2 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan9-vlan2
+            destination:
+              group:
+                network_group: vlan2
+            source:
+              group:
+                network_group: vlan9
+
+        - name: vlan2-vlan9
+          description: vlan2-vlan9 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan2-vlan9
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                network_group: vlan2
+
+        - name: vlan4-vlan2
+          description: vlan4-vlan2 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: my wlan to vlan2
+            destination:
+              group:
+                network_group: vlan2
+            source:
+              group:
+                address_group: hnds-vlan4
+
+
+        - name: vlan2-vlan4
+          description: vlan2-vlan4 rule set
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: vlan2 to my wlan
+            destination:
+              group:
+                address_group: hnds-vlan4
+            source:
+              group:
+                network_group: vlan2
+
+
+        - name: vlan2-vlan8
+          description: vlan2 to vlan8
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                network_group: vlan8
+            source:
+              group:
+                address_group: proxmox
+
+        - name: vlan8-vlan2
+          description: vlan8 to vlan2
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                address_group: proxmox
+            source:
+              group:
+                address_group: media
+            state:
+              established: true
+              related: true
+
+        - name: vlan2-vlan11
+          description: vlan2 to vlan11
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                network_group: vlan11
+            source:
+              group:
+                address_group: pi-dns
+
+        - name: vlan11-vlan2
+          description: vlan11 to vlan2
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                address_group: pi-dns
+            source:
+              group:
+                network_group: vlan11
+
+        - name: vlan9-vlan11
+          description: vlan9 to vlan11
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                network_group: vlan11
+            source:
+              group:
+                network_group: vlan9
+
+        - name: vlan11-vlan9
+          description: vlan11 to vlan9
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            destination:
+              group:
+                network_group: vlan9
+            source:
+              group:
+                network_group: vlan11
+            state:
+              established: true
+              related: true
+
+        - name: vlan8-vlan4
+          description: vlan8 to vlan4
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: media to hnds-vlan4
+            destination:
+              group:
+                address_group: hnds-vlan4
+            source:
+              group:
+                address_group: media
+            state:
+              established: true
+              related: true
+
+        - name: vlan4-vlan8
+          description: vlan4 to vlan8
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            description: hnds-vlan4 to media
+            destination:
+              group:
+                address_group: media
+            source:
+              group:
+                address_group: hnds-vlan4
+
+        - name: wan-lan
+          description: wan - lan
+          default_action: drop
+          rules:
+          - number: 10
+            action: accept
+            state:
+              established: true
+              related: true
+        - name: lan-wan
+          description: lan - wan
+          default_action: accept
+    state: overridden

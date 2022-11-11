@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars_files: vault.yml
+  gather_facts: 'no'
+
+  tasks:
+    - name: edit .bashrc
+      lineinfile:
+        path: /home/vyos/.bashrc
+        regexp: '^alias ip="ip --color=auto"'
+        line: alias ip="ip --color=auto"
+    - name: edit .bashrc
+      lineinfile:
+        path: /home/vyos/.bashrc
+        regexp: '^set -o vi'
+        line: set -o vi

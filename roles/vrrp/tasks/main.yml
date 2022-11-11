@@ -1,0 +1,29 @@
+---
+- name: set vrrp
+  vyos_config:
+    lines:
+    - set high-availability vrrp group vrrp-2 address '10.2.0.5/16'
+    - set high-availability vrrp group vrrp-2 interface 'eth1.2'
+    - set high-availability vrrp group vrrp-2 rfc3768-compatibility
+    - set high-availability vrrp group vrrp-2 vrid '1'
+    - set high-availability vrrp group vrrp-2 priority {{ vrrp_priority }}
+    - set high-availability vrrp group vrrp-4 address '10.4.0.5/16'
+    - set high-availability vrrp group vrrp-4 interface 'eth1.4'
+    - set high-availability vrrp group vrrp-4 rfc3768-compatibility
+    - set high-availability vrrp group vrrp-4 vrid '1'
+    - set high-availability vrrp group vrrp-4 priority {{ vrrp_priority }}
+    - set high-availability vrrp group vrrp-8 address '10.8.0.5/16'
+    - set high-availability vrrp group vrrp-8 interface 'eth1.8'
+    - set high-availability vrrp group vrrp-8 rfc3768-compatibility
+    - set high-availability vrrp group vrrp-8 vrid '1'
+    - set high-availability vrrp group vrrp-8 priority {{ vrrp_priority }}
+    - set high-availability vrrp group vrrp-9 address '10.9.0.5/16'
+    - set high-availability vrrp group vrrp-9 interface 'eth1.9'
+    - set high-availability vrrp group vrrp-9 rfc3768-compatibility
+    - set high-availability vrrp group vrrp-9 vrid '1'
+    - set high-availability vrrp group vrrp-9 priority {{ vrrp_priority }}
+    - set high-availability vrrp group vrrp-11 address '10.11.0.5/16'
+    - set high-availability vrrp group vrrp-11 interface 'eth1.11'
+    - set high-availability vrrp group vrrp-11 rfc3768-compatibility
+    - set high-availability vrrp group vrrp-11 vrid '1'
+    - set high-availability vrrp group vrrp-11 priority {{ vrrp_priority }}

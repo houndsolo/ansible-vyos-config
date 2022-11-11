@@ -1,0 +1,13 @@
+---
+- hosts: vyosdelif
+  connection: network_cli
+  vars_files: vault.yml
+  gather_facts: 'no'
+
+  tasks:
+  - name: configurable backup path
+    vyos.vyos.vyos_config:
+      backup: yes
+      backup_options:
+        filename: vyos.cloud.backup.cfg
+        dir_path: /home/houndsolo/documents/networking-configurations/vyos

@@ -1,0 +1,5 @@
+---
+vyos_hostname: vyos-lm-main
+vyos_id: 2
+octet3: 2
+vrrp_priority: 190

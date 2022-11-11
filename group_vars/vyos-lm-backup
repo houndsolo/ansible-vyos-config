@@ -1,0 +1,5 @@
+---
+vyos_hostname: vyos-lm-backup
+vyos_id: 3
+octet3: 2
+vrrp_priority: 180
