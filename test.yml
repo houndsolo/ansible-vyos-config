@@ -1,5 +1,0 @@
----
-- hosts: all
-  vars_files: vault.yml
-  roles:
-    - testrc

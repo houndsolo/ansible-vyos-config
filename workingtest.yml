@@ -1,8 +1,0 @@
----
-- hosts: ssbash
-  vars_files: vault.yml
-  gather_facts: 'no'
-  vars:
-    ansible_connection:
-  roles:
-    - testrc
