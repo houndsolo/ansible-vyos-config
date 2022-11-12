@@ -1,0 +1,5 @@
+---
+ansible_python_interpreter:
+ansible_connection:
+ansible_user: vyos
+ansible_network_os: vyos

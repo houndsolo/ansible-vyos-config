@@ -346,3 +346,6 @@
           description: lan - wan
           default_action: accept
     state: overridden
+- name: set default fws
+  vyos_config:
+    src: base_rules.j2

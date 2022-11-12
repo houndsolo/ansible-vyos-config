@@ -1,0 +1,31 @@
+---
+zones:
+  - name: vlan2
+    description: vlan2
+    interface:
+      - eth1.2v1v4
+      - eth1.2
+  - name: vlan4
+    description: vlan4
+    interface:
+      - eth1.4v1v4
+      - eth1.4
+  - name: vlan8
+    description: vlan8
+    interface:
+      - eth1.8v1v4
+      - eth1.8
+  - name: vlan9
+    description: vlan9
+    interface:
+      - eth1.9v1v4
+      - eth1.9
+  - name: vlan11
+    description: vlan11
+    interface:
+      - eth1.11v1v4
+      - eth1.11
+wanzone:
+  - name: WAN
+    description: WAN
+    interface: eth0

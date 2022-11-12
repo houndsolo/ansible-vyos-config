@@ -1,0 +1,22 @@
+{% for zone in wanzone %}
+set firewall zone {{ zone['name'] }} default-action 'drop'
+
+
+
+{% for inf in wanzone['interface'] %}
+set firewall zone {{ zone['name'] }} interface {{ inf }}
+{% endfor %}
+
+
+{# set zone-zone fw #}
+{% for lanzone in zones %}
+set firewall zone	{{ lanzone['name'] }} from {{ zone['name'] }} firewall name 'wan-lan'
+set firewall zone	{{ zone['name'] }} from {{ lanzone['name'] }} firewall name 'lan-wan'
+{% endfor %}
+
+
+
+
+
+
+{% endfor %}

@@ -1,13 +1,11 @@
 ---
-- hosts: vyos-{{ node }}-bash
-  connection: network_cli
+- hosts: "{{ node }}_bash"
   vars_files: vault.yml
   gather_facts: 'no'
-
   roles:
     - bashrc
 
-- hosts: vyos-{{ node }}-1
+- hosts: "{{ node }}_1"
   connection: network_cli
   vars_files: vault.yml
   gather_facts: 'no'
@@ -20,7 +18,8 @@
     - vrrp
     - fw-zones
     - nat
-- hosts: vyos-{{ node }}-2
+
+- hosts: "{{ node }}_2"
   connection: network_cli
   vars_files: vault.yml
   gather_facts: 'no'

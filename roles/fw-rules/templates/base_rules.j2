@@ -1,0 +1,12 @@
+{% for zone in zones %}
+{# set zone-zone fw #}
+{% for zone2 in zones %}
+
+{% if zone2['name'] != zone['name'] %}
+
+firewall name {{ zone['name'] }}-{{ zone2['name'] }} default-action 'drop'
+
+{% endif %}
+
+{% endfor %}
+{% endfor %}
