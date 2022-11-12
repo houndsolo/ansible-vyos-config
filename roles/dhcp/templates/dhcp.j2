@@ -1,0 +1,17 @@
+{% for subnet in subnets %}
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id'] }}.0.0/{{ subnet['cidr'] }} default-router 10.{{ subnet['id'] }}.0.5
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} name-server 10.{{ subnet['id']}}.0.4
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} lease 86400
+{% if subnet['active'] %}
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} range 0 start {{ subnet['start'] }}
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} range 0 stop {{ subnet['stop'] }}
+{% endif %}
+{% if subnet['static_mappings'] %}
+{% for map in subnet['static_mappings'] %}
+{% if map.ip_addr %}
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} static-mapping {{ map.name }} ip-address {{ map.ip_addr }}
+set service dhcp-server shared-network-name {{ vyos_network_name }} subnet 10.{{ subnet['id']}}.0.0/{{ subnet['cidr']}} static-mapping {{ map.name }} mac-address {{ map.mac_addr }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}

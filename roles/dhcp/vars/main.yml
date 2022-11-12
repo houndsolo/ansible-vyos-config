@@ -1,0 +1,114 @@
+---
+subnets:
+  - name: vlan2
+    id: 2
+    cidr: 20
+    active: false
+    start: 10.2.8.50
+    stop: 10.2.8.99
+    static_mappings:
+    - name: vm.arch.greatfox.space
+      description: c8dh 2.5 port
+      vlan: 2
+      ip_addr: 10.2.8.69
+      mac_addr: '62:26:1c:bd:81:bc'
+
+  - name: vlan4
+    id: 4
+    cidr: 24
+    active: true
+    start: 10.4.0.50
+    stop: 10.4.0.99
+    static_mappings:
+    - name: msi-wifi
+      description:
+      vlan: 4
+      ip_addr: 10.4.0.137
+      mac_addr: '9c:29:76:f2:a5:e4'
+
+    - name: p5a-wifi
+      description: p5a-wifi
+      vlan: 4
+      ip_addr: 10.4.0.141
+      mac_addr: '60:b7:6e:45:d4:2d'
+
+
+  - name: vlan8
+    id: 8
+    cidr: 16
+    active: false
+    start: 10.8.77.50
+    stop: 10.8.77.99
+    static_mappings:
+    - name: torrent.starship.space
+      description: torr.ent
+      vlan: 8
+      ip_addr: 10.8.7.7
+      mac_addr: '16:87:f6:ac:45:95'
+    - name: jellyfin.starship.space
+      description: jelly.fin
+      vlan: 8
+      ip_addr: 10.8.8.8
+      mac_addr: 'C6:A7:A3:40:B5:37'
+
+  - name: vlan9
+    id: 9
+    cidr: 16
+    active: false
+    start: 10.9.20.50
+    stop: 10.9.20.99
+    static_mappings:
+    - name: vm.arch.lvm.greatfox.space
+      description:
+      vlan: 9
+      ip_addr: 10.9.9.69
+      mac_addr: '92:C8:38:99:28:A0'
+
+    - name: vm.arch.ssd.greatfox.space
+      description:
+      vlan: 9
+      ip_addr: 10.9.9.70
+      mac_addr: 'a2:c6:4e:83:95:12'
+    - name: arch-1g
+      description: c8dh 1g
+      vlan: 9
+      ip_addr: 10.9.0.69
+      mac_addr: '50:eb:f6:80:a2:a5'
+
+  # - name: cluster.greatfox
+  #   description: c8dh 2.5 port
+  #   vlan: 7
+  #   ip_addr: 10.7.0.20/16
+  #   mac_addr: '50:eb:f6:80:a2:a4'
+
+    - name: msi_eth
+      description:
+      vlan: 9
+      ip_addr: 10.9.0.138
+      mac_addr: '2c:f0:5d:67:49:5a'
+
+
+    - name: arch.ssd.greatfox.space
+      description: unsure
+      vlan: 9
+      ip_addr: 10.9.0.70
+      mac_addr: '9A:69:39:88:93:CA'
+
+  - name: vlan11
+    id: 11
+    cidr: 16
+    active: true
+    start: 10.11.0.50
+    stop: 10.11.0.99
+    static_mappings:
+    - name: win10-970.greatfox.space
+      description:
+      vlan: 11
+      ip_addr: 10.11.8.1
+      mac_addr: '8a:8b:ca:9d:e4:c4'
+
+    - name: win.nvidia.landmaster.space
+      description:
+      vlan: 11
+      ip_addr:
+      mac_addr: '4A:4E:2E:3A:22:A8'
