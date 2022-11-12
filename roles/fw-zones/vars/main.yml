@@ -26,6 +26,6 @@ zones:
       - eth1.11v1v4
       - eth1.11
 wanzone:
-  - name: wan
+  - name: WAN
     description: wan
-    interface: eth0
+    interface: "eth0"

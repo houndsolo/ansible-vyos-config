@@ -1,24 +1,15 @@
 {% for zone in zones %}
 set firewall zone {{ zone['name'] }} default-action 'drop'
 
-
-
 {% for inf in zone['interface'] %}
 set firewall zone {{ zone['name'] }} interface {{ inf }}
 {% endfor %}
 
-
-{# set zone-zone fw #}
+{# set zone-zone fws #}
 {% for zone2 in zones %}
 {% if zone2['name'] != zone['name'] %}
 set firewall zone	{{ zone['name'] }} from {{ zone2['name'] }} firewall name '{{ zone2['name'] }}-{{ zone['name'] }}'
 {% endif %}
 
 {% endfor %}
-
-
-
-
-
-
 {% endfor %}
