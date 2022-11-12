@@ -8,3 +8,6 @@ done
 done
 
 ```
+
+
+why does fw-rules/template not need 'set' in the beginning of commands

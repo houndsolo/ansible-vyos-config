@@ -24,4 +24,4 @@
   vars_files: vault.yml
   gather_facts: 'no'
   roles:
-    #    - del-ci-if
+    - del-ci-if

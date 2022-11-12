@@ -1,5 +1,5 @@
 ---
-- name: Configure vyos-{{ vyos_hostname }}-1 system settings
+- name: Configure {{ vyos_hostname }} system settings
   vyos_config:
     lines:
     - set service ssh port '22'
