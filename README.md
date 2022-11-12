@@ -1,5 +1,10 @@
 ansible config for my home network
 
 ```
-ansible-playbook -i hosts.yml --vault-password-file=vyos-vault.pw playbook.yml -lvyos-ss-backup-bash -e node=ss_backup
+for i in ss lm ar ; do
+for j in main backup ; do
+ansible-playbook -i hosts.yml --vault-password-file=vyos-vault.pw playbook.yml -e node=${i}_${j}
+done
+done
+
 ```
